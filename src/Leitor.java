@@ -1,5 +1,3 @@
-package desafiojulho;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -81,7 +79,7 @@ public class Leitor {
 			System.out.println("** DESAFIO DE JULHO - VAI NA WEB / PAGSEGURO**");
 			System.out.println();
 			System.out.println();
-			System.out.println("Faça um programa que leia um arquivo texto e imprima no terminal os seguintes dados:"
+			System.out.println("Faï¿½a um programa que leia um arquivo texto e imprima no terminal os seguintes dados:"
 					.toUpperCase());
 			System.out.println();
 			System.out.println();

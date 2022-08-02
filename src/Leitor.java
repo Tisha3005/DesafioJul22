@@ -7,14 +7,20 @@ import java.util.Scanner;
 
 public class Leitor {
 
-	public static void lerTexto(String nomeArquivo) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException {
+		lerTexto("alunos.txt");
+		System.out.println();
+		System.out.println("FINAL");
 
-//TRATAMENTO DE ERROS + BUSCA PELO ARQUIVO ALUNOS.TXT + LEITURA ARQUIVO
+	}// FECHA O MAIN
+
+	public static void lerTexto(String nomeArquivo) throws FileNotFoundException {
+		//TRATAMENTO DE ERROS + BUSCA PELO ARQUIVO ALUNOS.TXT + LEITURA ARQUIVO
 		try {
 			File arquivo = new File(nomeArquivo);
 			Scanner linhaScanner = new Scanner(new FileInputStream(arquivo));// funcao de ler linha a linha
 
-//DECLARANDO VARIAVEIS
+			//DECLARANDO VARIAVEIS
 			// LINHA
 			int qtdeLinhas = 0;
 			int maiorLinha = 0;
@@ -31,7 +37,7 @@ public class Leitor {
 			PrintStream arquivoOut;
 			boolean primeiraLinha = true;
 
-//COMANDO DE REPETICAO + CONDICAO
+			//COMANDO DE REPETICAO + CONDICAO
 			while (linhaScanner.hasNextLine()) {// ENQUANTO FOR VERDADE REPETE - ainda tem uma proxima linha a ser lida?
 				String linhaNova = "";
 				String linha = linhaScanner.nextLine();// proxima linha
@@ -43,8 +49,8 @@ public class Leitor {
 							+ newStr[i].toString().substring(1).toLowerCase();
 					novaPalvra.add(newStr[i]);
 				}
-				
-                //RETIRAR A PRIMEIRA LINHA VAZIA DO ARQUIVO DE SAIDA
+
+				//RETIRAR A PRIMEIRA LINHA VAZIA DO ARQUIVO DE SAIDA
 				if (!primeiraLinha) {
 					novoArquivoSaida.add("\n");
 				} else {
@@ -60,10 +66,10 @@ public class Leitor {
 				novoArquivoSaida.add(linhaNova);
 				qtdeLinhas = qtdeLinhas + 1;
 				qtdePalavras = qtdePalavras + newStr.length;
-				
+
 
 			} // FIM DO WHILE
-			
+
 			//ENCONTRANDO A MAIOR PALAVRA
 			for (int i = 0; i < novaPalvra.size(); i++) {
 				if (maiorPalavra.length() < novaPalvra.get(i).length()) {
@@ -75,7 +81,7 @@ public class Leitor {
 			arquivoOut = new PrintStream("alunossaida.txt");
 			arquivoOut.print(novoArquivoSaida.toString().replace("[", "").replace("]", "").replace(",", "").trim());
 
-//SAIDA DE INFORMACAO CONSOLE
+			//SAIDA DE INFORMACAO CONSOLE
 			System.out.println("** DESAFIO DE JULHO - VAI NA WEB / PAGSEGURO**");
 			System.out.println();
 			System.out.println();
@@ -105,18 +111,10 @@ public class Leitor {
 
 		} // FECHA TRY
 
-//TRATAMENTO DE ERROS - CASO NAO ENCONTRE O ARQUIVO
+		//TRATAMENTO DE ERROS - CASO NAO ENCONTRE O ARQUIVO
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 			System.out.println("ARQUIVO NAO ENCONTRADO");
 		}
 	}// FECHA VOID
-
-	public static void main(String[] args) throws FileNotFoundException {
-		lerTexto("alunos.txt");
-		System.out.println();
-		System.out.println("FINAL");
-
-	}// FECHA O MAIN
-
 }// FECHA A CLASSE

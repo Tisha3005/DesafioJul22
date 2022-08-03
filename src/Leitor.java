@@ -43,11 +43,21 @@ public class Leitor {
 				String linha = linhaScanner.nextLine();// proxima linha
 				String[] newStr = linha.split("\\s+");
 
-				//ORGANIZAR AS LETRAS
+				//ORGANIZAR AS LETRAS + EXCECAO 1 DO DESAFIO
 				for (int i = 0; i < newStr.length; i++) {
-					linhaNova = linhaNova + " " + newStr[i].toString().substring(0, 1).toUpperCase()
-							+ newStr[i].toString().substring(1).toLowerCase();
-					novaPalvra.add(newStr[i]);
+					if(!newStr[i].isEmpty()){//AQUI EU NEGO O RETORNO QDO ESTIVER VAZIO ENTRE NOME SOBRENOME
+						System.out.println("Essa palavra: " + newStr[i] + " deve ficar em MAIÚSCULO? ");
+						Scanner recebe = new Scanner(System.in);
+						String armazena = recebe.nextLine().toLowerCase();
+
+						if ("sim".equals(armazena)) {
+							linhaNova = linhaNova + " " + newStr[i].toUpperCase();
+						} else{
+							linhaNova = linhaNova + " " + newStr[i].toString().substring(0, 1).toUpperCase()
+									+ newStr[i].toString().substring(1).toLowerCase();
+						}
+						novaPalvra.add(newStr[i]);
+					}
 				}
 
 				//RETIRAR A PRIMEIRA LINHA VAZIA DO ARQUIVO DE SAIDA
@@ -62,6 +72,7 @@ public class Leitor {
 					qtdePalavrasMaiorLinha = newStr.length;
 					qtdeCaracteresMaiorLinha = linha.length();
 				}
+
 				//NA SAIDA DE INFORMACOES ESTAVA IMPRIMINDO UMA SOH LINHA
 				novoArquivoSaida.add(linhaNova);
 				qtdeLinhas = qtdeLinhas + 1;
@@ -82,6 +93,8 @@ public class Leitor {
 			arquivoOut.print(novoArquivoSaida.toString().replace("[", "").replace("]", "").replace(",", "").trim());
 
 			//SAIDA DE INFORMACAO CONSOLE
+			System.out.println();
+			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("** DESAFIO DE JULHO - VAI NA WEB / PAGSEGURO**");
 			System.out.println();
 			System.out.println();
@@ -110,6 +123,8 @@ public class Leitor {
 			System.out.println("FINALIZANDO DE LER ARQUIVO");
 
 		} // FECHA TRY
+
+
 
 		//TRATAMENTO DE ERROS - CASO NAO ENCONTRE O ARQUIVO
 		catch (FileNotFoundException e) {
